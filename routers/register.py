@@ -16,9 +16,11 @@ async def show_users(db:Session=Depends(get_db),token: str = Depends(oauth2_sche
 @router.post('/register')
 async def POST_register(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = db.query(User).filter(User.email == user.email).first()
-    
-    if existing_user:
+    existing_username = db.query(User).filter(User.username == user.username).first()
+    if existing_user :
         return {'error': f'Email {user.email} already exists'}
+    if existing_username :
+        return {'error': f'Username {user.username} already exists'}
     if user.password != user.confirm_password :
         return {"Error": "Passwords do not match"}
   
