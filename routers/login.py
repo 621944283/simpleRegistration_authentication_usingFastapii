@@ -13,7 +13,7 @@ router = APIRouter()
 
 @router.post("/token",)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(),db:Session=Depends(get_db)):
-    already_user = db.query(User).filter(User.username==form_data.username).first()
+    already_user = db.query(User).filter(User.email==form_data.username).first()
 
     if already_user:
         password = already_user.password
