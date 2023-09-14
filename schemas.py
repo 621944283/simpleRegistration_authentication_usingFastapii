@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 from enum import Enum
 class UserType(str, Enum):
-    Admin = "Admin"
-    SuperAdmin = "Super admin"
-    User = "User"
+    superadmin = "super-admin"
+    stuff = "stuff"
+    customer = "customer"
 
 class UserCreate(BaseModel):
     username: str
